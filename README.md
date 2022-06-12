@@ -1,7 +1,7 @@
 # README
 
 # Serpent VS Square
-Serpent VS Square is a simple and visually appealing game that combines the elements of Snake and Block. An initial snake starts the game, as the goal is to make the snake as large as possible by colliding with circles that extend the length. This must be done while trying to avoid blocks or hit blocks with the smallest number, as the value of the block subtracts from the snake length. Users will use arrow keys in order to control the snake to avoid obstacles. Random blocks and lines are generated for the user to avoid. Score is accumulated based on the number value of blocks the snake can make it through.
+Serpent VS Square is a simple and visually appealing game that combines the elements of Snake and Block. An initial snake starts the game, as the goal is to grow the snake as large as possible by colliding with circles that extend the length. This must be done while trying to avoid blocks or hit blocks with the smallest number, as the value of the block subtracts from the snake length. Users will use arrow keys in order to control the snake to avoid obstacles. Random blocks and lines are generated for the user to avoid. Score is accumulated based on the number value of blocks the snake can make it through.
  
 [Serpent-VS-Square Live](https://raymondlang.github.io/serpent-vs-square/)
 

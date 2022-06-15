@@ -124,3 +124,60 @@ class Block extends MovingObject {
       return '#D84315';
     }
   }
+
+  draw(ctx) {
+    Util.drawBlock(ctx, this.pos[0], this.pos[1], 77, this.color);
+    if (this.value > 21) {
+      Util.drawText(ctx, this.pos[0] - 27, this.pos[1] + 20, 50, 'black', this.value);
+    }
+    else if (this.value > 9) {
+      Util.drawText(ctx, this.pos[0]-23, this.pos[1]+20, 50, 'black', this.value);
+    }
+    else {
+      Util.drawText(ctx, this.pos[0]-13, this.pos[1]+20, 50, 'black', this.value);
+    }
+
+  }
+
+}
+
+module.exports = Block;
+
+/***/ }),
+
+/***/ "./lib/circle.js":
+/*!***********************!*\
+  !*** ./lib/circle.js ***!
+  \***********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
+const MovingObject = __webpack_require__(/*! ./moving_object */ "./lib/moving_object.js");
+
+class Circle extends MovingObject {
+  constructor(options = {}) {
+    options.color = 'yellow';
+    options.pos = options.pos; //|| options.game.randomPos();
+    options.radius = 10;
+    options.vel = [0, 1];
+    super(options);
+    this.value = this.randomValue();
+  }
+
+  randomValue() {
+    return Math.floor(Math.random() * 6) + 1;
+  }
+
+  draw(ctx) {
+    Util.drawText(ctx, this.pos[0], this.pos[1]-15, 12, this.color, this.value);
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.pos[0], this.pos[1], this.radius, 0, Math.PI * 2, true);
+    ctx.fill();
+
+    // Util.drawCircle(ctx, this.pos[0], this.pos[1], this.radius, this.color);
+
+  }
+
+}

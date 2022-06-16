@@ -181,3 +181,21 @@ class Circle extends MovingObject {
   }
 
 }
+
+module.exports = Circle;
+
+/***/ }),
+
+/***/ "./lib/game.js":
+/*!*********************!*\
+  !*** ./lib/game.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const Line = __webpack_require__(/*! ./line */ "./lib/line.js");
+const Score = __webpack_require__(/*! ./score */ "./lib/score.js");
+const Serpent = __webpack_require__(/*! ./serpent */ "./lib/serpent.js");
+const Block = __webpack_require__(/*! ./block */ "./lib/block.js");
+const Circle = __webpack_require__(/*! ./circle */ "./lib/circle.js");
+const Util = __webpack_require__(/*! ./util */ "./lib/util.js");

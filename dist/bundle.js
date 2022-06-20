@@ -446,3 +446,38 @@ class GameView {
     this.resetSerp = this.resetSerp.bind(this);
 
   }
+
+    bindKeyHandlers() {
+    // if (!e) return;
+    const serpent = this.serpent;
+    Object.keys(keyCodes).forEach((k) => {
+      const move = keyCodes[k];
+      key(k, () => {
+        serpent.power(move);
+      });
+    });
+    // debugger;
+    // if (keyCodes.hasOwnProperty(e.keyCode)) {
+    //   e.preventDefault();
+    //   serpent.power(keyCodes[e.keyCode]);
+    // }
+
+  }
+
+  togglePlay(event) {
+    let timeStamp = event.timeStamp;
+    // debugger;
+    //console.log(this.lastTime);
+    //console.log(this.frame);
+    this.paused = !this.paused;
+    // debugger;
+    if (!this.paused) {
+      // debugger;
+      // this.animate(this.timeStamp);
+      // idea: reset this.lastTime
+      this.lastTime = timeStamp;
+      this.frame = requestAnimationFrame(this.animate.bind(this));
+    } else {
+      cancelAnimationFrame(this.frame);
+    }
+  }

@@ -547,3 +547,105 @@ class GameView {
     }
   }
 }
+
+module.exports = GameView;
+
+/***/ }),
+
+/***/ "./lib/line.js":
+/*!*********************!*\
+  !*** ./lib/line.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
+const MovingObject = __webpack_require__(/*! ./moving_object */ "./lib/moving_object.js");
+
+class Line extends MovingObject {
+  constructor(options = {}) {
+    options.color = 'white';
+    options.pos = options.pos;
+    options.vel = [0, 1];
+    super(options);
+    this.length = 90;
+  }
+
+  draw(ctx) {
+    ctx.beginPath();
+    ctx.moveTo(this.pos[0], this.pos[1]);
+    ctx.lineTo(this.pos[0], this.pos[1]+this.length);
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = this.color;
+    ctx.lineCap = 'round';
+    ctx.stroke();
+  }
+
+}
+
+module.exports = Line;
+
+/***/ }),
+
+/***/ "./lib/moving_object.js":
+/*!******************************!*\
+  !*** ./lib/moving_object.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
+
+class MovingObject {
+  constructor(options) {
+    this.pos = options.pos;
+    this.vel = options.vel;
+    this.radius = options.radius;
+    this.color = options.color;
+    this.game = options.game;
+
+  }
+
+  // draw(ctx) {
+  //   ctx.fillStyle = this.color;
+
+  //   ctx.beginPath();
+  //   ctx.arc(this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true);
+  //   ctx.fill();
+  // }
+
+  isCollidedWith(otherObject) {
+    // console.log(otherObject.constructor.name);
+    // if (otherObject.constructor.name === 'Block') {
+    //   // debugger;
+    //   let blockWidth = otherObject.pos[0] + 48;
+    //   let blockLength = otherObject.pos[1] + 97;
+    //   if (this.pos[1] + this.radius === blockLength &&
+    //     this.pos[0] + this.radius < blockWidth &&
+    //     this.pos[0] + this.radius > otherObject.pos[0]) {
+
+    //     return true;
+    //   }
+    //   else {
+    //     return false;
+    //   }
+    // }
+    if (otherObject.constructor.name === 'Line') {
+      // debugger;
+      if (((this.pos[0] + this.radius < otherObject.pos[0] +2
+        && this.pos[0] + this.radius > otherObject.pos[0] -1)
+        ||
+        (this.pos[0] - this.radius < otherObject.pos[0] +2 &&
+        this.pos[0] - this.radius > otherObject.pos[0] -1))
+        &&
+        (this.pos[1] > otherObject.pos[1] &&
+        this.pos[1] < otherObject.pos[1] + otherObject.length + 20)) {
+          // debugger;
+        return true;
+      } else {
+        return false;
+      }
+    }
+    const centerDist = Util.dist(this.pos, otherObject.pos);
+    return centerDist < (this.radius + otherObject.radius);
+  }

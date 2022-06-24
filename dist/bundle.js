@@ -649,3 +649,150 @@ class MovingObject {
     const centerDist = Util.dist(this.pos, otherObject.pos);
     return centerDist < (this.radius + otherObject.radius);
   }
+
+  nextPos(timeDelta) {
+
+  }
+
+  move(timeDelta) {
+    // timeDelta is number of milliseconds since last move
+    // if the computer is busy the time delta will be larger
+    // in this case the MovingObject should move farther in this frame
+    // velocity of object is how far it should move in 1/60th of a second
+    const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
+      offsetX = this.vel[0] * velocityScale,
+      offsetY = this.vel[1] * velocityScale;
+
+    this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+
+    if (this.game.isOutOfBounds(this.pos)) {
+      this.remove();
+    }
+  }
+
+  remove() {
+    this.game.remove(this);
+  }
+
+}
+
+const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
+
+module.exports = MovingObject;
+
+/***/ }),
+
+/***/ "./lib/score.js":
+/*!**********************!*\
+  !*** ./lib/score.js ***!
+  \**********************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
+const MovingObject = __webpack_require__(/*! ./moving_object */ "./lib/moving_object.js");
+
+class Score extends MovingObject {
+  constructor(options = {}) {
+    options.vel = [0,0]
+    options.pos = [370, 10]
+    super(options);
+    this.score = 0;
+    // debugger;
+  }
+
+  increment(num) {
+    this.score += num;
+  }
+
+  draw(ctx) {
+    // debugger;
+    Util.drawText(ctx, 370, 10, 'white', this.score);
+  }
+}
+
+module.exports = Score;
+
+/***/ }),
+
+/***/ "./lib/serp-v-square.js":
+/*!******************************!*\
+  !*** ./lib/serp-v-square.js ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const Game = __webpack_require__(/*! ./game */ "./lib/game.js");
+const GameView = __webpack_require__(/*! ./game_view */ "./lib/game_view.js");
+const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
+
+document.addEventListener("DOMContentLoaded", () => {
+  let started = false;
+  const canvasEl = document.getElementById("game-canvas");
+  canvasEl.width = 400;
+  canvasEl.height = 850;
+
+  const ctx = canvasEl.getContext("2d");
+  ctx.imageSmoothingEnabled = true;
+  ctx.clearRect(0,0, 400, 850);
+  ctx.fillStye = "black";
+  ctx.fillRect(0,0, 400, 850);
+  // ctx.font = 'normal 35px Montserrat';
+  // ctx.fillStyle = 'white';
+  // ctx.fillText("Click to Start", 100, 400);
+  Util.drawText(ctx, 200, 625- 15, 12, 'yellow', 4);
+  for (let i=0; i < 4; i++) {
+    ctx.fillStyle = 'yellow';
+    ctx.beginPath();
+    ctx.arc(200, 625 + (i * 22), 10, 0, Math.PI * 2, true);
+    ctx.fill();
+  }
+  const game = new Game();
+  document.getElementById("restart").addEventListener('click', () => {
+
+    game.reset();
+    // delete game;
+    ctx.clearRect(0,0, 400,850);
+    const canvas = document.getElementById('game-canvas');
+    const ctx1 = canvas.getContext('2d');
+    ctx1.clearRect(0,0, 400, 850);
+    const game1 = new Game();
+    new GameView(game1, ctx1).start();
+
+  });
+
+  let _start = function() {
+
+  };
+
+  document.getElementById("gameplay").addEventListener("mouseover", function () {
+    document.getElementById("canvas-overlay").style.display = "none";
+  });
+
+  document.getElementById("gameplay").addEventListener("mouseout", function () {
+    if (!started) {
+      document.getElementById("canvas-overlay").style.display = "block";
+    }
+  });
+
+
+  document.getElementById("canvas-overlay").addEventListener('click', function start() {
+    started = true;
+    document.getElementById('canvas-overlay').style.display = "none";
+    new GameView(game, ctx).start();
+    document.getElementById("canvas-overlay").removeEventListener('click', start, true);
+    document.getElementById("game-canvas").removeEventListener('click', start, true);
+  }, true);
+
+  document.getElementById("game-canvas").addEventListener('click', function start() {
+    started = true;
+    document.getElementById('canvas-overlay').style.display = "none";
+    new GameView(game, ctx).start();
+    document.getElementById("game-canvas").removeEventListener('click', start, true);
+  }, true);
+
+
+
+
+
+});

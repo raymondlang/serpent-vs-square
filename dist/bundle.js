@@ -796,3 +796,87 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 });
+
+/***/ }),
+
+/***/ "./lib/serpent.js":
+/*!************************!*\
+  !*** ./lib/serpent.js ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const MovingObject = __webpack_require__(/*! ./moving_object */ "./lib/moving_object.js");
+const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
+const Circle = __webpack_require__(/*! ./circle */ "./lib/circle.js");
+const Block = __webpack_require__(/*! ./block */ "./lib/block.js");
+const SerpentNode = __webpack_require__(/*! ./serpent_node */ "./lib/serpent_node.js");
+const Line = __webpack_require__(/*! ./line */ "./lib/line.js");
+
+class Serpent extends MovingObject {
+  constructor(options) {
+    options.radius = 10;
+    options.vel = [0,0];
+    options.color = 'yellow';
+    // options.pos = [5,5];
+    super(options);
+    this.prevX = [];
+    this.length = 4;
+    this.leftColliding = false;
+    this.rightColliding = false;
+    // this.nodes = [];
+    // for (let i = 0; i < this.length; i++) {
+    //   this.nodes.push(new SerpentNode({pos: [this.pos[0], this.pos[1]+(i*22)] }))
+    // }
+    this.power = this.power.bind(this);
+  }
+
+
+
+  addLength(length) {
+    this.length += length;
+  }
+
+  collideWith(otherObject) {
+    // debugger;
+    if (otherObject instanceof Circle) {
+      this.length += otherObject.value;
+      // this.updateLength()
+      otherObject.remove();
+      return 0;
+    } else if (otherObject instanceof Block) {
+      if (otherObject.value < this.length) {
+        for (let i=0; i < otherObject.value; i++) {
+          this.length -= 1;
+        }
+        // this.updateLength(otherObject.value);
+        // this.length -= otherObject.value;
+        otherObject.remove();
+        return otherObject.value;
+      }
+      else {
+        let length = this.length;
+        this.length -= otherObject.value;
+        // this.updateLength(otherObject.value);
+        otherObject.remove();
+        return length;
+        // this.remove();
+      }
+    } else if (otherObject instanceof Line) {
+        // debugger;
+        // if (this.pos[0] < otherObject.pos[0] + 2 && this.pos[0] < otherObject.pos[0] -2) {
+        //   this.pos[0] = otherObject.pos[0] -10;
+        //   return 0;
+        // }
+
+        if (otherObject.pos[0] > this.pos[0]) {
+          this.rightColliding = true;
+          // this.pos[0] = otherObject.pos - this.radius;
+        } else {
+          this.leftColliding = true;
+          // this.pos[0] = otherObject.pos + this.radius;
+        }
+        this.vel = [0,0];
+        return 0;
+    }
+  }

@@ -880,3 +880,58 @@ class Serpent extends MovingObject {
         return 0;
     }
   }
+
+  power(impulse) {
+    this.vel = [0, 0];
+
+    //
+    // debugger;
+    // if (this.pos[0] > 1 && this.pos[0] < 8) {
+    //   debugger;
+    // }
+
+    // if (this.pos[0] + impulse[0] + this.vel[0] < this.radius ||
+    //   this.pos[0] + this.radius + impulse[0] + this.vel[0] > 399) {
+    //   impulse[0] = 0;
+    //   this.vel[0] = 0;
+    // }
+
+    // console.log(this.pos[0]);
+
+    if (this.pos[0] + this.radius > 399 && impulse[0] > 0) {
+      // return;
+      impulse[0] = 0;
+      this.pos[0] = 389;
+      return;
+    }
+
+    if (impulse[0] < 0 && !this.leftColliding) {
+      this.vel[0] += impulse[0];
+    } else if (impulse[0] > 0 && !this.rightColliding) {
+      this.vel[0] += impulse[0];
+    } else {
+      // debugger;
+    }
+
+    this.leftColliding = false;
+    this.rightColliding = false;
+
+
+    // if (this.pos[0] > 1 && this.pos[0] < 399 ) {
+    //   this.vel[0] += impulse[0];
+    // }
+    // this.pos[1] += impulse[1];
+  }
+
+  resetVel() {
+    this.vel = [0,0];
+  }
+
+  draw(ctx) {
+    // ctx.fillStyle = this.color;
+    // ctx.fillText(this.length, this.pos[0], this.pos[1]-15)
+    if (this.pos[0] + this.radius > 399) {
+      this.pos[0] = 389;
+    } else if (this.pos[0] - this.radius < 1) {
+      this.pos[0] = 11;
+    }

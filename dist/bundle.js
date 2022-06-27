@@ -935,3 +935,36 @@ class Serpent extends MovingObject {
     } else if (this.pos[0] - this.radius < 1) {
       this.pos[0] = 11;
     }
+Util.drawText(ctx, this.pos[0], this.pos[1]-15, 12, this.color, this.length);
+    this.mostPrev = [this.pos[0], this.pos[1]];
+
+    this.prevX.unshift(this.pos[0]);
+    if (this.prevX.length > 4000) {
+      this.prevX.pop();
+    }
+    // console.log(this.prevX);
+
+    this.mostPrevIndex = 1;
+    let prevPosX;
+    let prevPosY;
+    for(let i = 0; i < this.length; i++) {
+      let index = 0;
+      if (i === 0) {
+        prevPosX = this.pos[0];
+        prevPosY = this.pos[1];
+      } else {
+        index = this.mostPrevIndex;
+        prevPosX = this.prevX[index] === undefined ? this.pos[0] : this.prevX[index];
+        prevPosY = this.pos[1] + (index);
+        while (Util.dist([prevPosX, this.pos[1] + index], this.mostPrev ) < 21) {
+          prevPosX = this.prevX[index];
+          prevPosY = this.pos[1] + (index);
+          index += 1;
+        }
+        this.mostPrev = [prevPosX, prevPosY];
+        this.mostPrevIndex = index;
+        // console.log("most-prev", this.mostPrev);
+      }
+      let node = new SerpentNode({ pos: [prevPosX, prevPosY] });
+      node.draw(ctx, i, this.vel);
+  }

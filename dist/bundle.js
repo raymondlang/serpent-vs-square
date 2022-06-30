@@ -968,3 +968,140 @@ Util.drawText(ctx, this.pos[0], this.pos[1]-15, 12, this.color, this.length);
       let node = new SerpentNode({ pos: [prevPosX, prevPosY] });
       node.draw(ctx, i, this.vel);
   }
+
+  // for (let i = 0; i < this.length; i++) {
+    //   // debugger;
+    //   const prevPos = this.prevX[i*4] === null ? this.pos[0] : this.prevX[i*4]
+    //   let node = new SerpentNode({pos: [prevPos, this.pos[1] + (i*22)]});
+    //   node.draw(ctx);
+    // }
+      // ctx.fillStyle = this.color;
+      // ctx.beginPath();
+      // ctx.arc(this.pos[0] + this.vel[0]*(i*(-10)), this.pos[1] + (i*22), this.radius, 0, Math.PI *2, true);
+      // ctx.fill();
+
+  }
+}
+
+module.exports = Serpent;
+
+/***/ }),
+
+/***/ "./lib/serpent_node.js":
+/*!*****************************!*\
+  !*** ./lib/serpent_node.js ***!
+  \*****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+const MovingObject = __webpack_require__(/*! ./moving_object */ "./lib/moving_object.js");
+
+class SerpentNode extends MovingObject {
+  constructor(options) {
+    options.radius = 10;
+    options.vel = [0,0];
+    options.color = 'yellow';
+    super(options);
+  }
+
+  changeVelocity(i, vel) {
+    setTimeout(() => {this.vel = vel; }
+    , 1000*i);
+  }
+
+  draw(ctx) {
+    ctx.fillStyle = this.color;
+    ctx.beginPath();
+    ctx.arc(this.pos[0], this.pos[1], this.radius, 0, Math.PI*2, true);
+    ctx.fill();
+  }
+
+}
+
+module.exports = SerpentNode;
+
+/***/ }),
+
+/***/ "./lib/util.js":
+/*!*********************!*\
+  !*** ./lib/util.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+const Util = {
+  // Normalize the length of the vector to 1, maintaining direction.
+  dir(vec) {
+    const norm = Util.norm(vec);
+    return Util.scale(vec, 1 / norm);
+  },
+  // Find distance between two points.
+  dist(pos1, pos2) {
+    return Math.sqrt(
+      Math.pow(pos1[0] - pos2[0], 2) + Math.pow(pos1[1] - pos2[1], 2)
+    );
+  },
+  // Find the length of the vector.
+  norm(vec) {
+    return Util.dist([0, 0], vec);
+  },
+  // Return a randomly oriented vector with the given length.
+  randomVec(length) {
+    const deg = 2 * Math.PI * Math.random();
+    return Util.scale([Math.sin(deg), Math.cos(deg)], length);
+  },
+  // Scale the length of a vector by the given amount.
+  scale(vec, m) {
+    return [vec[0] * m, vec[1] * m];
+  },
+
+  wrap(coord, max) {
+    if (coord < 0) {
+      return max - (coord % max);
+    } else if (coord > max) {
+      return coord % max;
+    } else {
+      return coord;
+    }
+  },
+
+  drawCircle(ctx, x, y, radius, color) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.arc(x, y, radius, 0, Math.PI * 2, true);
+  },
+
+  drawText(ctx, x, y, size, color, text) {
+    ctx.font = `normal ${size}px Montserrat`;
+    ctx.fillStyle = color;
+    ctx.fillText(text, x, y);
+  },
+
+  drawBlock(ctx, x,y, size, color) {
+    const radius = 25;
+    ctx.strokeStyle = color;
+    ctx.lineJoin = "round";
+    ctx.lineWidth = radius;
+
+    ctx.strokeRect(
+      x + (radius/2) - size/2,
+      y + (radius/2) - size/2,
+      size - radius,
+      size - radius
+    );
+    ctx.fillStyle = color;
+    ctx.fillRect(
+      x + (radius / 2) -size/2,
+      y + (radius / 2) -size/2,
+      size - radius,
+      size - radius
+    );
+  }
+};
+
+module.exports = Util;
+
+/***/ })
+
+/******/ });
+//# sourceMappingURL=bundle.js.map

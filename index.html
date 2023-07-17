@@ -1,78 +1,94 @@
 <html>
-
-<head>
-  <title>Serpent vs Square</title>
-  <link rel="stylesheet" href="./stylesheets/reset.css">
-  <link rel="stylesheet" href="./stylesheets/serp-v-snake.css">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-    crossorigin="anonymous">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/block-favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Exo+2" rel="stylesheet">
+  <head>
+    <title>Serpent vs Square</title>
+    <link rel="stylesheet" href="./stylesheets/reset.css" />
+    <link rel="stylesheet" href="./stylesheets/serp-v-snake.css" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="assets/block-favicon.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Exo+2"
+      rel="stylesheet"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
     <script>
       WebFont.load({
         google: {
-          families: ['Montserrat', 'Exo 2']
-        }
+          families: ["Montserrat", "Exo 2"],
+        },
       });
     </script>
-</head>
+  </head>
 
-<body>
-  <div class="title">
-    <h1 class="sign">Serpent VS Square</h1>
-  </div>
-  <div class="flex">
-    <div class="button-box">
-      <button id="gameplay" class="gameplay" type="button">Gameplay
-        <div class="gameplay-info">
-          <p class="info-text">
-            > Use arrow keys to guide the serpent of balls and break the bricks.
-            <br>
-            <br>> Try to break as many bricks as possible.
-            <br>
-            <br> > Get additional balls and make the serpent larger.
-            <br>
-            <br> > Very easy to play but very hard to reach high scores!
-          </p>
+  <body>
+    <div class="title">
+      <h1 class="sign">Serpent VS Square</h1>
+    </div>
+    <div class="flex">
+      <div class="button-box">
+        <button id="gameplay" class="gameplay" type="button">
+          Gameplay
+          <div class="gameplay-info">
+            <p class="info-text">
+              > Use arrow keys to guide the serpent of balls and break the
+              bricks.
+              <br />
+              <br />> Try to break as many bricks as possible.
+              <br />
+              <br />
+              > Get additional balls and make the serpent larger.
+              <br />
+              <br />
+              > Very easy to play but very hard to reach high scores!
+            </p>
+          </div>
+        </button>
+        <button class="pause-play" id="pausebtn" type="button">
+          <i class="fas fa-play"></i>
+          <i class="fas fa-pause"></i>
+        </button>
+        <button class="restart" id="restart" type="button">
+          <i class="fas fa-undo" style="font-size: 20px"></i>
+        </button>
+        <div class="button-label">Arrow Keys</div>
+        <div class="button-icons">
+          <i class="fas fa-caret-square-left left-arrow"></i>
+          <i class="fas fa-caret-square-right right-arrow"></i>
         </div>
-      </button>
-      <button class="pause-play" id="pausebtn" type="button">
-        <i class="fas fa-play"></i>
-        <i class="fas fa-pause"></i>
-      </button>
-      <button class="restart" id="restart" type="button">
-        <i class="fas fa-undo" style="font-size: 20px"></i>
-      </button>
-      <div class="button-label">Arrow Keys</div>
-      <div class="button-icons">
-        <i class="fas fa-caret-square-left left-arrow"></i>
-        <i class="fas fa-caret-square-right right-arrow"></i>
       </div>
-    </div>
-    
-    
-    <div class="canvasdiv">
-      <div id="canvas-overlay" class="canvas-overlay">Click to Start</div>
-      <canvas id="game-canvas"></canvas>
-    </div>
-    <div class="my-links"> 
-      <a href="https://github.com/therealmeyer/Serpent-vs-Square">
-        <i class="fab fa-github github"></i>
-      </a>
-      <a href="https://www.linkedin.com/in/ryanlmeyer/">
-        <i class="fab fa-linkedin linkedin"></i>
-      </a>
-    </div>
-    <script type="application/javascript" src="dist/bundle.js"></script>
-    <script src="keymaster.js"></script>
-    
-    
-  </div>
-</body>
 
-<style> canvas { overflow: hidden }</style>
+      <div class="canvasdiv">
+        <div id="canvas-overlay" class="canvas-overlay">Click to Start</div>
+        <canvas id="game-canvas"></canvas>
+      </div>
+      <div class="my-links">
+        <a href="https://github.com/raymondlang/Serpent-vs-Square">
+          <i class="fab fa-github github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/raymondlang/">
+          <i class="fab fa-linkedin linkedin"></i>
+        </a>
+      </div>
+      <script type="application/javascript" src="dist/bundle.js"></script>
+      <script src="keymaster.js"></script>
+    </div>
+  </body>
 
+  <style>
+    canvas {
+      overflow: hidden;
+    }
+  </style>
 </html>
-

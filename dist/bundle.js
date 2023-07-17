@@ -1,97 +1,11 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./lib/serp-v-square.js");
-/******/ })
-/************************************************************************/
-/******/ ({
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
 
 /***/ "./lib/block.js":
 /*!**********************!*\
   !*** ./lib/block.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const MovingObject = __webpack_require__(/*! ./moving_object */ "./lib/moving_object.js");
 const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
@@ -132,12 +46,12 @@ class Block extends MovingObject {
     }
     else if (this.value > 9) {
       Util.drawText(ctx, this.pos[0]-23, this.pos[1]+20, 50, 'black', this.value);
-    }
+    } 
     else {
       Util.drawText(ctx, this.pos[0]-13, this.pos[1]+20, 50, 'black', this.value);
     }
 
-  }
+  } 
 
 }
 
@@ -149,8 +63,7 @@ module.exports = Block;
 /*!***********************!*\
   !*** ./lib/circle.js ***!
   \***********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
 const MovingObject = __webpack_require__(/*! ./moving_object */ "./lib/moving_object.js");
@@ -175,7 +88,7 @@ class Circle extends MovingObject {
     ctx.beginPath();
     ctx.arc(this.pos[0], this.pos[1], this.radius, 0, Math.PI * 2, true);
     ctx.fill();
-
+    
     // Util.drawCircle(ctx, this.pos[0], this.pos[1], this.radius, this.color);
 
   }
@@ -190,8 +103,7 @@ module.exports = Circle;
 /*!*********************!*\
   !*** ./lib/game.js ***!
   \*********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const Line = __webpack_require__(/*! ./line */ "./lib/line.js");
 const Score = __webpack_require__(/*! ./score */ "./lib/score.js");
@@ -200,6 +112,8 @@ const Block = __webpack_require__(/*! ./block */ "./lib/block.js");
 const Circle = __webpack_require__(/*! ./circle */ "./lib/circle.js");
 const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
 
+
+
 class Game {
   constructor() {
     this.circles = [];
@@ -207,7 +121,7 @@ class Game {
     this.serpents = [];
     this.lines = [];
     this.score = 0;
-
+    
     // this.addBlocks();
     // this.addCircles();
     // this.addLines();
@@ -215,13 +129,13 @@ class Game {
     this.addCircles = this.addCircles.bind(this);
     this.addLines = this.addLines.bind(this);
 
-
+   
     // setInterval(this.addBlocks, 4500);
     // setInterval(this.addCircles, 4500);
     // setInterval(this.addLines, 4500);
   }
 
-
+  
 
   addSerpent() {
     const serpent = new Serpent({ pos: [200, 625], game: this });
@@ -232,7 +146,7 @@ class Game {
 
   addBlocks() {
     // debugger
-
+    
     // console.log("added blocks");
     const margin = 3;
     const blockSize = 78;
@@ -276,7 +190,7 @@ class Game {
 
   addCircles() {
     // console.log("added circles");
-    const possibleCircs = [40, 90, 140, 170, 185,
+    const possibleCircs = [40, 90, 140, 170, 185, 
       210, 250, 280, 310, 340, 370];
     const possY = [100, 150, 180, 200];
     const randomX = possibleCircs.sort(function () {
@@ -312,7 +226,7 @@ class Game {
     const numLines = Math.floor(Math.random() * 4);
     for (let i = 0; i < numLines; i++) {
       // const placeX = possibleLines[Math.floor(Math.random() * possibleLines.length)];
-
+      
       this.add(new Line({game: this, pos: [random[i], 42]}));
     }
 
@@ -412,8 +326,7 @@ module.exports = Game;
 /*!**************************!*\
   !*** ./lib/game_view.js ***!
   \**************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ ((module) => {
 
 const keyCodes = {
   left: [-3, 0],
@@ -447,7 +360,7 @@ class GameView {
 
   }
 
-    bindKeyHandlers() {
+  bindKeyHandlers() {
     // if (!e) return;
     const serpent = this.serpent;
     Object.keys(keyCodes).forEach((k) => {
@@ -548,7 +461,11 @@ class GameView {
   }
 }
 
+
+
+
 module.exports = GameView;
+
 
 /***/ }),
 
@@ -556,8 +473,7 @@ module.exports = GameView;
 /*!*********************!*\
   !*** ./lib/line.js ***!
   \*********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
 const MovingObject = __webpack_require__(/*! ./moving_object */ "./lib/moving_object.js");
@@ -591,8 +507,7 @@ module.exports = Line;
 /*!******************************!*\
   !*** ./lib/moving_object.js ***!
   \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
 
@@ -620,10 +535,10 @@ class MovingObject {
     //   // debugger;
     //   let blockWidth = otherObject.pos[0] + 48;
     //   let blockLength = otherObject.pos[1] + 97;
-    //   if (this.pos[1] + this.radius === blockLength &&
-    //     this.pos[0] + this.radius < blockWidth &&
+    //   if (this.pos[1] + this.radius === blockLength && 
+    //     this.pos[0] + this.radius < blockWidth && 
     //     this.pos[0] + this.radius > otherObject.pos[0]) {
-
+        
     //     return true;
     //   }
     //   else {
@@ -634,11 +549,11 @@ class MovingObject {
       // debugger;
       if (((this.pos[0] + this.radius < otherObject.pos[0] +2
         && this.pos[0] + this.radius > otherObject.pos[0] -1)
-        ||
+        || 
         (this.pos[0] - this.radius < otherObject.pos[0] +2 &&
         this.pos[0] - this.radius > otherObject.pos[0] -1))
-        &&
-        (this.pos[1] > otherObject.pos[1] &&
+        && 
+        (this.pos[1] > otherObject.pos[1] && 
         this.pos[1] < otherObject.pos[1] + otherObject.length + 20)) {
           // debugger;
         return true;
@@ -649,6 +564,7 @@ class MovingObject {
     const centerDist = Util.dist(this.pos, otherObject.pos);
     return centerDist < (this.radius + otherObject.radius);
   }
+
 
   nextPos(timeDelta) {
 
@@ -686,8 +602,7 @@ module.exports = MovingObject;
 /*!**********************!*\
   !*** ./lib/score.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
 const MovingObject = __webpack_require__(/*! ./moving_object */ "./lib/moving_object.js");
@@ -715,96 +630,11 @@ module.exports = Score;
 
 /***/ }),
 
-/***/ "./lib/serp-v-square.js":
-/*!******************************!*\
-  !*** ./lib/serp-v-square.js ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-const Game = __webpack_require__(/*! ./game */ "./lib/game.js");
-const GameView = __webpack_require__(/*! ./game_view */ "./lib/game_view.js");
-const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
-
-document.addEventListener("DOMContentLoaded", () => {
-  let started = false;
-  const canvasEl = document.getElementById("game-canvas");
-  canvasEl.width = 400;
-  canvasEl.height = 850;
-
-  const ctx = canvasEl.getContext("2d");
-  ctx.imageSmoothingEnabled = true;
-  ctx.clearRect(0,0, 400, 850);
-  ctx.fillStye = "black";
-  ctx.fillRect(0,0, 400, 850);
-  // ctx.font = 'normal 35px Montserrat';
-  // ctx.fillStyle = 'white';
-  // ctx.fillText("Click to Start", 100, 400);
-  Util.drawText(ctx, 200, 625- 15, 12, 'yellow', 4);
-  for (let i=0; i < 4; i++) {
-    ctx.fillStyle = 'yellow';
-    ctx.beginPath();
-    ctx.arc(200, 625 + (i * 22), 10, 0, Math.PI * 2, true);
-    ctx.fill();
-  }
-  const game = new Game();
-  document.getElementById("restart").addEventListener('click', () => {
-
-    game.reset();
-    // delete game;
-    ctx.clearRect(0,0, 400,850);
-    const canvas = document.getElementById('game-canvas');
-    const ctx1 = canvas.getContext('2d');
-    ctx1.clearRect(0,0, 400, 850);
-    const game1 = new Game();
-    new GameView(game1, ctx1).start();
-
-  });
-
-  let _start = function() {
-
-  };
-
-  document.getElementById("gameplay").addEventListener("mouseover", function () {
-    document.getElementById("canvas-overlay").style.display = "none";
-  });
-
-  document.getElementById("gameplay").addEventListener("mouseout", function () {
-    if (!started) {
-      document.getElementById("canvas-overlay").style.display = "block";
-    }
-  });
-
-
-  document.getElementById("canvas-overlay").addEventListener('click', function start() {
-    started = true;
-    document.getElementById('canvas-overlay').style.display = "none";
-    new GameView(game, ctx).start();
-    document.getElementById("canvas-overlay").removeEventListener('click', start, true);
-    document.getElementById("game-canvas").removeEventListener('click', start, true);
-  }, true);
-
-  document.getElementById("game-canvas").addEventListener('click', function start() {
-    started = true;
-    document.getElementById('canvas-overlay').style.display = "none";
-    new GameView(game, ctx).start();
-    document.getElementById("game-canvas").removeEventListener('click', start, true);
-  }, true);
-
-
-
-
-
-});
-
-/***/ }),
-
 /***/ "./lib/serpent.js":
 /*!************************!*\
   !*** ./lib/serpent.js ***!
   \************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const MovingObject = __webpack_require__(/*! ./moving_object */ "./lib/moving_object.js");
 const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
@@ -830,8 +660,6 @@ class Serpent extends MovingObject {
     // }
     this.power = this.power.bind(this);
   }
-
-
 
   addLength(length) {
     this.length += length;
@@ -880,7 +708,6 @@ class Serpent extends MovingObject {
         return 0;
     }
   }
-
   power(impulse) {
     this.vel = [0, 0];
 
@@ -935,7 +762,8 @@ class Serpent extends MovingObject {
     } else if (this.pos[0] - this.radius < 1) {
       this.pos[0] = 11;
     }
-Util.drawText(ctx, this.pos[0], this.pos[1]-15, 12, this.color, this.length);
+
+    Util.drawText(ctx, this.pos[0], this.pos[1]-15, 12, this.color, this.length);
     this.mostPrev = [this.pos[0], this.pos[1]];
 
     this.prevX.unshift(this.pos[0]);
@@ -969,7 +797,8 @@ Util.drawText(ctx, this.pos[0], this.pos[1]-15, 12, this.color, this.length);
       node.draw(ctx, i, this.vel);
   }
 
-  // for (let i = 0; i < this.length; i++) {
+
+    // for (let i = 0; i < this.length; i++) {
     //   // debugger;
     //   const prevPos = this.prevX[i*4] === null ? this.pos[0] : this.prevX[i*4]
     //   let node = new SerpentNode({pos: [prevPos, this.pos[1] + (i*22)]});
@@ -985,14 +814,14 @@ Util.drawText(ctx, this.pos[0], this.pos[1]-15, 12, this.color, this.length);
 
 module.exports = Serpent;
 
+
 /***/ }),
 
 /***/ "./lib/serpent_node.js":
 /*!*****************************!*\
   !*** ./lib/serpent_node.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 const MovingObject = __webpack_require__(/*! ./moving_object */ "./lib/moving_object.js");
 
@@ -1026,8 +855,7 @@ module.exports = SerpentNode;
 /*!*********************!*\
   !*** ./lib/util.js ***!
   \*********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ ((module) => {
 
 const Util = {
   // Normalize the length of the vector to 1, maintaining direction.
@@ -1103,5 +931,118 @@ module.exports = Util;
 
 /***/ })
 
-/******/ });
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!******************************!*\
+  !*** ./lib/serp-v-square.js ***!
+  \******************************/
+const Game = __webpack_require__(/*! ./game */ "./lib/game.js");
+const GameView = __webpack_require__(/*! ./game_view */ "./lib/game_view.js");
+const Util = __webpack_require__(/*! ./util */ "./lib/util.js");
+
+document.addEventListener("DOMContentLoaded", () => {
+  let started = false;
+  const canvasEl = document.getElementById("game-canvas");
+  canvasEl.width = 400;
+  canvasEl.height = 850;
+
+  const ctx = canvasEl.getContext("2d");
+  ctx.imageSmoothingEnabled = true;
+  ctx.clearRect(0,0, 400, 850);
+  ctx.fillStye = "black";
+  ctx.fillRect(0,0, 400, 850);
+  // ctx.font = 'normal 35px Montserrat';
+  // ctx.fillStyle = 'white';
+  // ctx.fillText("Click to Start", 100, 400);
+  Util.drawText(ctx, 200, 625- 15, 12, 'yellow', 4);
+  for (let i=0; i < 4; i++) { 
+    ctx.fillStyle = 'yellow';
+    ctx.beginPath();
+    ctx.arc(200, 625 + (i * 22), 10, 0, Math.PI * 2, true);
+    ctx.fill();
+  }
+  const game = new Game();
+  document.getElementById("restart").addEventListener('click', () => {
+    
+    game.reset();
+    // delete game;
+    ctx.clearRect(0,0, 400,850);
+    const canvas = document.getElementById('game-canvas');
+    const ctx1 = canvas.getContext('2d');
+    ctx1.clearRect(0,0, 400, 850);
+    const game1 = new Game();
+    new GameView(game1, ctx1).start();
+    
+  });
+  
+  let _start = function() {
+    
+  };
+
+  document.getElementById("gameplay").addEventListener("mouseover", function () {
+    document.getElementById("canvas-overlay").style.display = "none";
+  });
+
+  document.getElementById("gameplay").addEventListener("mouseout", function () {
+    if (!started) {
+      document.getElementById("canvas-overlay").style.display = "block";
+    }
+  });
+
+
+  document.getElementById("canvas-overlay").addEventListener('click', function start() {
+    started = true;
+    document.getElementById('canvas-overlay').style.display = "none";
+    new GameView(game, ctx).start();
+    document.getElementById("canvas-overlay").removeEventListener('click', start, true);
+    document.getElementById("game-canvas").removeEventListener('click', start, true);
+  }, true);
+
+  document.getElementById("game-canvas").addEventListener('click', function start() {
+    started = true;
+    document.getElementById('canvas-overlay').style.display = "none";
+    new GameView(game, ctx).start();
+    document.getElementById("game-canvas").removeEventListener('click', start, true);
+  }, true);
+
+
+
+
+
+});
+
+
+
+})();
+
+/******/ })()
+;
 //# sourceMappingURL=bundle.js.map

@@ -12,13 +12,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/therealmeyer/Serpent-vs-Square.git"
+    "url": "git+https://github.com/raymondlang/Serpent-vs-Square.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/therealmeyer/Serpent-vs-Square/issues"
+    "url": "https://github.com/raymondlang/Serpent-vs-Square/issues"
   },
-  "homepage": "https://github.com/therealmeyer/Serpent-vs-Square#readme"
+  "homepage": "https://github.com/raymondlang/Serpent-vs-Square#readme",
+  "dependencies": {
+    "webpack": "^5.88.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
+  }
 }

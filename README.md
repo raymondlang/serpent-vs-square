@@ -5,8 +5,6 @@ Serpent VS Square is a simple and visually appealing game that combines the elem
  
 [Serpent-VS-Square Live](https://raymondlang.github.io/serpent-vs-square/)
 
-![Game](https://s3-us-west-1.amazonaws.com/sonicstratus/serp-v-square.png)
-
 ## Technologies
 * Javascript
 * HTML
